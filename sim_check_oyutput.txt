@@ -1,0 +1,555 @@
+🔧 Processing 0x323a76393544d5ecca80cd6ef2a560c6a395b7e3.json...
+contract: 0x323a76393544d5ecca80cd6ef2a560c6a395b7e3, proposalID: 65967822514040846992464797266243157509206510058326665394616765053720727454968
+description: # Execute EP5
+```
+Set the temporary premium start price to $100,000 as described in [EP5](https://docs.ens.domains/v/governance/governance-proposals/ep5-executable-set-the-temporary-premium-start-price-to-usd100-000).
+```
+
+
+trace_data keys: ['status', 'data']
+trace_ststus: Success
+---------------------------
+=== DSL Output ===
+{
+  "description_dsl": [
+    "SetParam('temporary_premium', 'start_price', 100000)"
+  ],
+  "trace_dsl": [
+    "Execute(targets, values, calldatas, descriptionHash)",
+    "Call(target, function_sig, args)",
+    "Call(target, function_sig, args)",
+    "Execute(targets, values, calldatas, descriptionHash)",
+    "SetParam(module, key, value)"
+  ]
+}
+=== LLM Analysis ===
+{
+  "match": false,
+  "differences": [
+    {
+      "action": "SetParam",
+      "field": "description_dsl",
+      "description": "Description DSL contains 'SetParam' with parameters for 'temporary_premium', 'start_price', and 100000."
+    },
+    {
+      "action": "Execute",
+      "field": "trace_dsl",
+      "description": "Trace DSL contains 'Execute' actions that are not present in the description."
+    },
+    {
+      "action": "Call",
+      "field": "trace_dsl",
+      "description": "Trace DSL contains 'Call' actions that are not present in the description."
+    },
+    {
+      "action": "SetParam",
+      "field": "trace_dsl",
+      "description": "Trace DSL includes 'SetParam' with parameters 'module', 'key', and 'value' which is different from description."
+    }
+  ],
+  "summary": "The description DSL has a specific 'SetParam' action that is not matched in the trace DSL, while the trace includes multiple actions not mentioned in the description."
+}
+contract: 0x323a76393544d5ecca80cd6ef2a560c6a395b7e3, proposalID: 99882233577221676057992280816078245519848378270443751235073826886360950537295
+description: # Execute EP11
+Executes [EP11](https://github.com/ensdomains/governance-docs/blob/1e381d6fd97c5d877b9c90d5941e471b6ae1bc8e/governance-proposals/ep11-executable-end-airdrop.md), "End the $ENS and EP2 airdrops".
+trace_data keys: ['status', 'data']
+trace_ststus: Success
+---------------------------
+=== DSL Output ===
+{
+  "description_dsl": [
+    "SetParam('Airdrop', 'active', false)",
+    "TransferOwnership('new_owner')"
+  ],
+  "trace_dsl": [
+    "Execute(targets, values, calldatas, descriptionHash)",
+    "Call(target, function_sig, args)",
+    "Call(target, function_sig, args)",
+    "Execute(targets, values, calldatas, descriptionHash)",
+    "Call(target, function_sig, args)",
+    "Call(target, function_sig, args)"
+  ]
+}
+=== LLM Analysis ===
+{
+  "match": false,
+  "differences": [
+    {
+      "action": "SetParam",
+      "field": "Airdrop",
+      "description": "The description DSL includes a SetParam action that is missing in the trace DSL."
+    },
+    {
+      "action": "TransferOwnership",
+      "field": "new_owner",
+      "description": "The description DSL includes a TransferOwnership action that is missing in the trace DSL."
+    },
+    {
+      "action": "Execute",
+      "field": "target, values, calldatas, descriptionHash",
+      "description": "The trace DSL has two Execute actions that are not specified in the description DSL."
+    },
+    {
+      "action": "Call",
+      "field": "target, function_sig, args",
+      "description": "The trace DSL has multiple Call actions that are not specified in the description DSL."
+    }
+  ],
+  "summary": "The description DSL contains actions that are absent from the trace DSL, and the trace DSL contains actions that do not appear in the description DSL."
+}
+contract: 0x323a76393544d5ecca80cd6ef2a560c6a395b7e3, proposalID: 50152158826647742094695349340830523178083147237337111134725087674188893435887
+description: # [EP 5.26] [Executable] Implementation of [EP 5.19]’s ENS Governance Distribution Pilot Program
+
+[Temp Check Discourse link](https://discuss.ens.domains/t/ep-5-26-executable-implementation-of-ep-5-19-s-ens-governance-distribution-pilot-program/19878)
+
+
+ ## Description 
+
+## Abstract
+
+This executable proposal implements the Governance Distribution Pilot Program approved in [EP5.19](https://snapshot.org/#/ens.eth/proposal/0xfa54ff2b55f0495c96ec2d8645241bcff48ca6afe1f4925fb51f29c4667252df). Following the community's selection of the 30k ENS distribution option, this proposal authorizes the transfer of ENS tokens from the treasury to implement the program.
+
+## Specification
+
+This proposal authorizes:
+1. The transfer of 30,000 ENS tokens from the DAO treasury to the Meta-governance working group's main wallet (main.mg.wg.ens.eth) for distribution to eligible recipients
+2. The Meta-governance working group will then distribute these tokens through 2-year linear vesting contracts according to the allocation table below
+
+This distribution follows the quadratic funding method, which is a progressive ratio where recipients receive ENS tokens proportional to the square root of their USDC/ETH contributions during January-September 2024. The complete distribution table is as follows:
+
+
+
+### Recipients
+
+|From| To | SUM of Value |Squared Weight|% of total|ENS|% of value received|
+|---|---|---|---|---|---|---|
+|Ecosystem| ETHGlobal | $ 190,000.00 |435.9|5.2%|1,569.85|11.6%|
+|| wslyvh.eth | $ 50,004.00 |223.6|2.7%|805.35|22.5%|
+|| Onthis | $ 25,000.00 |158.1|1.9%|569.44|31.9%|
+|| ipns.eth | $ 25,000.00 |158.1|1.9%|569.44|31.9%|
+|| Fluidkey | $ 25,000.00 |158.1|1.9%|569.44|31.9%|
+|| Blockscout | $ 25,000.00 |158.1|1.9%|569.44|31.9%|
+|| beaconchain.eth | $ 25,000.00 |158.1|1.9%|569.44|31.9%|
+|| 1w3.eth | $ 25,000.00 |158.1|1.9%|569.44|31.9%|
+|| Urbe Campus | $ 14,680.00 |121.2|1.5%|436.36|41.6%|
+|| Discord Support | $ 13,000.00 |114.0|1.4%|410.63|44.2%|
+|| generalmagic.eth | $ 11,563.43 |107.5|1.3%|387.28|46.9%|
+|| Pugson | $ 10,000.00 |100.0|1.2%|360.15|50.4%|
+|| Juicebox | $ 10,000.00 |100.0|1.2%|360.15|50.4%|
+|| frolic.eth | $ 10,000.00 |100.0|1.2%|360.15|50.4%|
+|| Drips | $ 10,000.00 |100.0|1.2%|360.15|50.4%|
+|| Socket | $ 5,000.00 |70.7|0.8%|254.66|71.3%|
+|| ENS Fairy | $ 4,781.34 |69.1|0.8%|249.03|72.9%|
+|| weird3.eth | $ 3,000.00 |54.8|0.7%|197.26|92.1%|
+|| stephancill.eth | $ 2,367.89 |48.7|0.6%|175.25|103.6%|
+|| Scope.sh | $ 2,367.89 |48.7|0.6%|175.25|103.6%|
+|| Kiwi News | $ 2,367.89 |48.7|0.6%|175.25|103.6%|
+|| aexek.eth | $ 1,750.00 |41.8|0.5%|150.66|120.5%|
+|Ecosystem Total|| $ 490,882.44 |||||
+|Public Goods| Rotki | $ 53,973.38 |232.3|2.8%|836.70|21.7%|
+|| gashawk.eth | $ 40,000.00 |200.0|2.4%|720.29|25.2%|
+|| buidlguidl.eth | $ 35,000.00 |187.1|2.2%|673.77|27.0%|
+|| borderlessafrica.eth | $ 30,000.00 |173.2|2.1%|623.79|29.1%|
+|| Revoke.Cash | $ 20,000.00 |141.4|1.7%|509.33|35.7%|
+|| Firefly | $ 20,000.00 |141.4|1.7%|509.33|35.7%|
+|| EIP-7212 | $ 20,000.00 |141.4|1.7%|509.33|35.7%|
+|| ethdaily.eth | $ 14,797.60 |121.6|1.5%|438.10|41.4%|
+|| Dappnode | $ 12,500.00 |111.8|1.3%|402.66|45.1%|
+|| ETHDenver | $ 10,000.00 |100.0|1.2%|360.15|50.4%|
+|| pairwise.eth | $ 8,402.18 |91.7|1.1%|330.12|55.0%|
+|| apoorv.eth | $ 7,021.88 |83.8|1.0%|301.79|60.2%|
+|| leticiaferraz.eth | $ 6,949.32 |83.4|1.0%|300.23|60.5%|
+|| Urbe Campus | $ 5,000.00 |70.7|0.8%|254.66|71.3%|
+|| Latin Hackathon | $ 5,000.00 |70.7|0.8%|254.66|71.3%|
+|| eth-mexico.eth | $ 5,000.00 |70.7|0.8%|254.66|71.3%|
+|| DAOstar | $ 5,000.00 |70.7|0.8%|254.66|71.3%|
+|| aynieducativo.eth | $ 5,000.00 |70.7|0.8%|254.66|71.3%|
+|| glodollar.eth | $ 3,762.22 |61.3|0.7%|220.90|82.2%|
+|| modularcrypto.eth | $ 1,818.29 |42.6|0.5%|153.57|118.2%|
+|| daveytea.eth | $ 1,818.29 |42.6|0.5%|153.57|118.2%|
+|| UPE | $ 940.56 |30.7|0.4%|110.45|164.4%|
+|| illuminated.eth | $ 940.56 |30.7|0.4%|110.45|164.4%|
+|| dhive.eth | $ 940.56 |30.7|0.4%|110.45|164.4%|
+|| bloomnetwork.eth | $ 940.56 |30.7|0.4%|110.45|164.4%|
+|| pabl0cks.eth | $ 877.74 |29.6|0.4%|106.70|170.2%|
+|| iviangita.eth | $ 877.74 |29.6|0.4%|106.70|170.2%|
+|| easlabs.eth | $ 877.74 |29.6|0.4%|106.70|170.2%|
+|| 2118.eth | $ 877.74 |29.6|0.4%|106.70|170.2%|
+|Public Goods Total|| $ 318,316.31 |||||
+|Metagov| Karpatkey | $ 187,149.13 |432.6|5.2%|1,558.02|11.7%|
+|| daemon.eth | $ 27,000.00 |164.3|2.0%|591.78|30.7%|
+|| Lemma | $ 9,998.67 |100.0|1.2%|360.12|50.4%|
+|| Tally | $ 8,999.54 |94.9|1.1%|341.66|53.1%|
+|| Event Support | $ 3,000.00 |54.8|0.7%|197.26|92.1%|
+|| daveytea.eth | $ 1,000.00 |31.6|0.4%|113.89|159.4%|
+|| andrewpage.eth | $ 780.00 |27.9|0.3%|100.58|180.5%|
+|Metagov Total|| $ 237,927.35 |||||
+|Immunefi Bounty| Immunefi  | $ 102,000.00 |319.4|3.8%|1,150.22|15.8%|
+|| @UGWST_COM | $ 75,000.00 |273.9|3.3%|986.30|18.4%|
+|| @navad | $ 7,500.00 |86.6|1.0%|311.90|58.2%|
+|| @Sagamore | $ 6,000.00 |77.5|0.9%|278.97|65.1%|
+|| @adhd | $ 5,000.00 |70.7|0.8%|254.66|71.3%|
+|| @solidityhaxor | $ 2,500.00 |50.0|0.6%|180.07|100.8%|
+|| @haoce505 | $ 2,500.00 |50.0|0.6%|180.07|100.8%|
+|| @h4nt3rx | $ 2,500.00 |50.0|0.6%|180.07|100.8%|
+|| @austinoa012 | $ 1,000.00 |31.6|0.4%|113.89|159.4%|
+|Immunefi Bounty Total|| $ 204,000.00 |||||
+|ETH Global| TF Guo | $ 3,000.00 |54.8|0.7%|197.26|92.1%|
+|| Nikolas Lionis | $ 2,000.00 |44.7|0.5%|161.06|112.7%|
+|| Arthur Sabirzyanov | $ 2,000.00 |44.7|0.5%|161.06|112.7%|
+|| Stephan Wittig | $ 1,500.00 |38.7|0.5%|139.48|130.2%|
+|| Rashmi Abbigeri | $ 1,500.00 |38.7|0.5%|139.48|130.2%|
+|| Mehran Saliminia | $ 1,500.00 |38.7|0.5%|139.48|130.2%|
+|| Mattis Deisen | $ 1,500.00 |38.7|0.5%|139.48|130.2%|
+|| Ben Levy | $ 1,375.00 |37.1|0.4%|133.55|136.0%|
+|| Aryeh Greenberg | $ 1,375.00 |37.1|0.4%|133.55|136.0%|
+|| Shoma Shiga | $ 1,250.00 |35.4|0.4%|127.33|142.6%|
+|| Rao Araki | $ 1,250.00 |35.4|0.4%|127.33|142.6%|
+|| sudolabel ‎ | $ 1,000.00 |31.6|0.4%|113.89|159.4%|
+|| Simone Staffa | $ 1,000.00 |31.6|0.4%|113.89|159.4%|
+|| Paolo Rollo | $ 1,000.00 |31.6|0.4%|113.89|159.4%|
+|| Francesco Cirulli | $ 1,000.00 |31.6|0.4%|113.89|159.4%|
+|| Yong Feng Ng | $ 875.00 |29.6|0.4%|106.53|170.5%|
+|| Yik Kai Ng | $ 875.00 |29.6|0.4%|106.53|170.5%|
+|| Junyao Chan | $ 875.00 |29.6|0.4%|106.53|170.5%|
+|| Jing Jie Ng | $ 875.00 |29.6|0.4%|106.53|170.5%|
+|| Tom Chauveau | $ 750.00 |27.4|0.3%|98.63|184.1%|
+|| Roman GASCOIN | $ 750.00 |27.4|0.3%|98.63|184.1%|
+|| Coline SEGURET | $ 750.00 |27.4|0.3%|98.63|184.1%|
+|| Wojciech Staniszewski | $ 500.00 |22.4|0.3%|80.53|225.5%|
+|| Patrick Fuchs | $ 500.00 |22.4|0.3%|80.53|225.5%|
+|| Pascal Rüger | $ 500.00 |22.4|0.3%|80.53|225.5%|
+|| Luca Orbke | $ 500.00 |22.4|0.3%|80.53|225.5%|
+|| Joanna Daniluk | $ 500.00 |22.4|0.3%|80.53|225.5%|
+|| Eason Chai | $ 500.00 |22.4|0.3%|80.53|225.5%|
+|| Bartłomiej Tarczyński | $ 500.00 |22.4|0.3%|80.53|225.5%|
+|| Antoni Koszowski | $ 500.00 |22.4|0.3%|80.53|225.5%|
+|| Andrzej Daniel | $ 500.00 |22.4|0.3%|80.53|225.5%|
+|| Yoshiki Takabayashi | $ 250.00 |15.8|0.2%|56.94|318.9%|
+|| Shritesh Jamulkar | $ 250.00 |15.8|0.2%|56.94|318.9%|
+|| Rohit Ramesh | $ 250.00 |15.8|0.2%|56.94|318.9%|
+|| Nishen Kaushika Menerapitiyage Don | $ 250.00 |15.8|0.2%|56.94|318.9%|
+|| Helen Femi Williams | $ 250.00 |15.8|0.2%|56.94|318.9%|
+|| Francisco Cordero | $ 250.00 |15.8|0.2%|56.94|318.9%|
+|| Danya Carolina Gómez Cantú | $ 250.00 |15.8|0.2%|56.94|318.9%|
+|| Bianca Trovò | $ 250.00 |15.8|0.2%|56.94|318.9%|
+|| Bernardo Vieira | $ 250.00 |15.8|0.2%|56.94|318.9%|
+|| Adaku Agwunobi | $ 250.00 |15.8|0.2%|56.94|318.9%|
+|ETH Global Total|| $ 35,000.00 |||||
+|Grand Total|| $ 1,286,126.10 |8329.9|100%|30,000.00||
+	
+
+1. Value represents the total received of all transactions
+2. Squared Weight is simply the square root of that value, which is used as a weight
+3. % of total divided that by the total weight
+4. ENS multiplies that percentage to the total budget
+5. % of value received is a comparison of the value received in USDC with the value received in ENS, with ENS at $14
+
+
+## Transaction
+
+
+```json
+{
+    "target": "0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72",
+    "value": 0,
+    "calldata": "0xa9059cbb00000000000000000000000091c32893216de3ea0a55abb9851f581d4503d39b00000000000000000000000000000000000000000000065a4da25d3016c00000"
+}
+```
+## Verification
+
+- Target: ENS token contract (0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72)
+- Recipient: main.mg.wg.ens.eth (0x91c32893216dE3eA0a55ABb9851f581d4503d39b)
+- Amount: 30,000 ENS (30000000000000000000000 in wei)
+- Function: transfer(address,uint256)
+
+---
+
+The Meta-governance working group will handle subsequent distributions to individual recipients through Hedgey vesting contracts following the approved allocation table.
+
+The transaction will move the 30k $ENS to the main Meta-governance wallet.  After the transaction completes, the Meta-governance working group will craft the Hedgey vesting contracts following the above allocation table.
+trace_data keys: ['status', 'data']
+trace_ststus: Success
+---------------------------
+=== DSL Output ===
+{
+  "description_dsl": [
+    "Transfer(ENS, main.mg.wg.ens.eth, 30000)"
+  ],
+  "trace_dsl": [
+    "Execute(targets, values, calldatas, descriptionHash)",
+    "Call(target, function_sig, args)",
+    "Call(target, function_sig, args)",
+    "Execute(targets, values, calldatas, descriptionHash)",
+    "Transfer(token, to, amount)"
+  ]
+}
+=== LLM Analysis ===
+{
+  "match": false,
+  "differences": [
+    {
+      "action": "Transfer",
+      "field": "description_dsl",
+      "description": "Transfer action with parameters ENS, main.mg.wg.ens.eth, 30000 found in description_dsl but not matched in trace_dsl."
+    },
+    {
+      "action": "Execute",
+      "field": "trace_dsl",
+      "description": "Multiple Execute actions found in trace_dsl but are not in description_dsl."
+    },
+    {
+      "action": "Call",
+      "field": "trace_dsl",
+      "description": "Multiple Call actions found in trace_dsl but are not in description_dsl."
+    }
+  ],
+  "summary": "The description_dsl contains a specific Transfer action, whereas the trace_dsl consists of Execute and Call actions that are not aligned with the description."
+}
+contract: 0x323a76393544d5ecca80cd6ef2a560c6a395b7e3, proposalID: 14573906698181916980991958251655570598275649222336388998984945658874299918898
+description: # [EP 5.25] [Executable] Collective Working Group Funding Request (Oct 2024) - Resubmission
+
+[Temp Check Discourse link](https://discuss.ens.domains/t/ep-5-25-executable-collective-working-group-funding-request-oct-2024-resubmission/19847)
+
+
+ ## Description 
+
+## Description
+This is a resubmission of [EP 5.24], with no changes to the funding amounts or technical specifications.
+
+## Abstract
+This proposal executes all three Working Group funding requests for the October 2024 funding window as passed in [EP 5.17.1](https://discuss.ens.domains/t/5-17-1-social-funding-request-ens-meta-governance-working-group-term-5-oct-window/19677), [EP 5.17.2](https://discuss.ens.domains/t/5-17-2-social-funding-request-ens-ecosystem-working-group/19678), and [EP 5.17.3](https://discuss.ens.domains/t/5-17-3-social-funding-request-ens-public-goods-working-group/19679). For more detail, view the ENS Governance docs at https://basics.ensdao.org/funding-requests 
+
+## Proposal Components
+
+---
+
+### 1) [Meta-governance Funding Request [EP 5.17.1]](https://discuss.ens.domains/t/5-17-1-social-funding-request-ens-meta-governance-working-group-term-5-oct-window/19677)
+
+The Meta-governance Working Group requests funding to fulfill anticipated budgetary needs through the next formal funding window in April 2025.
+
+| Destination | USDC | ETH | $ENS |
+|:------------|:----:|:---:|:----:|
+| [ENS Meta-Gov Main Multisig](https://etherscan.io/address/0x91c32893216dE3eA0a55ABb9851f581d4503d39b) | 254,000 | 0 | 0 |
+
+This amount will cover all expected expenses while maintaining a 100,000 USDC prudent reserve to ensure continuity if future funding is delayed.
+
+---
+
+### 2) [Ecosystem Funding Request [EP 5.17.2]](https://discuss.ens.domains/t/5-17-2-social-funding-request-ens-ecosystem-working-group/19678)
+
+The ENS Ecosystem Working Group requests funding to support operations through April 2025. This is the only funding request of Term 5. The working group is responsible for growing and improving the ENS Ecosystem by funding builders and projects that are ENS-specific or ENS-centric.
+
+| Destination | USDC | ETH | $ENS |
+|:------------|:----:|:---:|:----:|
+| [ENS Ecosystem Main Multisig](https://etherscan.io/address/0x2686a8919df194aa7673244549e68d42c1685d03) | 836,000 | 0 | 0 |
+
+---
+
+### 3) [Public Goods Funding Request [EP 5.17.3]](https://discuss.ens.domains/t/5-17-3-social-funding-request-ens-public-goods-working-group/19679)
+
+The ENS Public Goods Working Group requests funding to support operations through the next funding window in April 2025. The funds requested extend current needs through to next term to ensure that next season's stewards have available funding before the next funding window.
+
+| Destination | USDC | ETH | $ENS |
+|:------------|:----:|:---:|:----:|
+| [Public Goods Main Multisig](https://etherscan.io/address/0xcD42b4c4D102cc22864e3A1341Bb0529c17fD87d) | 226,000 | 0 | 0 |
+
+---
+
+## Specification
+
+The following transfers are to be made from the DAO treasury:
+
+1. Transfer 254,000 USDC to the Meta-governance safe:
+   - Address: `0x91c32893216dE3eA0a55ABb9851f581d4503d39b`
+
+2. Transfer 836,000 USDC to the Ecosystem safe:
+   - Address: `0x2686A8919Df194aA7673244549E68D42C1685d03`
+
+3. Transfer 226,000 USDC to the Public Goods safe:
+   - Address: `0xcD42b4c4D102cc22864e3A1341Bb0529c17fD87d`
+
+#### Total transfer amount: 1,316,000 USDC
+
+---
+
+### Calldata:
+**5.17.1 Tx to Metagov**
+```
+{
+    "target": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "value": 0,
+    "calldata": "0xa9059cbb00000000000000000000000091c32893216de3ea0a55abb9851f581d4503d39b0000000000000000000000000000000000000000000000000000003b23946c00"
+}
+```
+**5.17.2 Tx to Ecosystem**
+```
+{
+    "target": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "value": 0,
+    "calldata": "0xa9059cbb0000000000000000000000002686a8919df194aa7673244549e68d42c1685d03000000000000000000000000000000000000000000000000000000c2a57ba800"
+}
+```
+**5.17.3 Tx to Public Goods**
+```
+{
+    "target": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "value": 0,
+    "calldata": "0xa9059cbb000000000000000000000000cd42b4c4d102cc22864e3a1341bb0529c17fd87d000000000000000000000000000000000000000000000000000000349ea65400"
+}
+```
+trace_data keys: ['status', 'data']
+trace_ststus: Success
+---------------------------
+=== DSL Output ===
+{
+  "description_dsl": [
+    "Transfer(USDC, 0x91c32893216dE3eA0a55ABb9851f581d4503d39b, 254000)",
+    "Transfer(USDC, 0x2686A8919Df194aA7673244549E68D42C1685d03, 836000)",
+    "Transfer(USDC, 0xcD42b4c4D102cc22864e3A1341Bb0529c17fD87d, 226000)"
+  ],
+  "trace_dsl": [
+    "Execute(targets, values, calldatas, descriptionHash)",
+    "Call(target, function_sig, args)",
+    "Call(target, function_sig, args)",
+    "Execute(targets, values, calldatas, descriptionHash)",
+    "Transfer(token, to, amount)",
+    "Transfer(token, to, amount)",
+    "Transfer(token, to, amount)",
+    "Transfer(token, to, amount)",
+    "Transfer(token, to, amount)",
+    "Transfer(token, to, amount)"
+  ]
+}
+=== LLM Analysis ===
+{
+  "match": false,
+  "differences": [
+    {
+      "action": "Transfer",
+      "field": "amount",
+      "description": "The amounts of the transfers in the description_dsl do not match the placeholder structure in the trace_dsl."
+    },
+    {
+      "action": "Transfer",
+      "field": "address",
+      "description": "The addresses in description_dsl are specific addresses while trace_dsl lists generic placeholders."
+    },
+    {
+      "action": "Count",
+      "field": "missing transfers",
+      "description": "There are three specific transfers listed in description_dsl, while trace_dsl contains multiple generic Transfer calls without specific parameters. Missing more specific transfer details."
+    }
+  ],
+  "summary": "The description_dsl and trace_dsl do not match due to different transfer details. The trace_dsl lacks specific addresses and amounts present in the description_dsl."
+}
+contract: 0x323a76393544d5ecca80cd6ef2a560c6a395b7e3, proposalID: 90476529665364161211265365238121921179703522228680648046371476645353679539653
+description: [EP2] Retrospective Airdrop 
+Enacts EP2 as approved by Snapshot vote, and described in full here: https://github.com/ensdomains/governance-docs/blob/main/governance-proposals/ep2-executable-retrospective-airdrop-for-accounts-that-owned-another-accounts-primary-ens-1.md
+trace_data keys: ['status', 'data']
+trace_ststus: Success
+---------------------------
+=== DSL Output ===
+{
+  "description_dsl": [
+    "TransferOwnership(new_owner)",
+    "TransferGovernance(new_governor)",
+    "Mint(token, to, amount)"
+  ],
+  "trace_dsl": [
+    "Execute(targets, values, calldatas, descriptionHash)",
+    "Call(target, function_sig, args)",
+    "Call(target, function_sig, args)",
+    "Execute(targets, values, calldatas, descriptionHash)",
+    "Call(target, function_sig, args)"
+  ]
+}
+=== LLM Analysis ===
+{
+  "match": false,
+  "differences": [
+    {
+      "action": "TransferOwnership(new_owner)",
+      "field": "description_dsl",
+      "description": "An action in the description_dsl that does not match any action in the trace_dsl."
+    },
+    {
+      "action": "TransferGovernance(new_governor)",
+      "field": "description_dsl",
+      "description": "An action in the description_dsl that does not match any action in the trace_dsl."
+    },
+    {
+      "action": "Mint(token, to, amount)",
+      "field": "description_dsl",
+      "description": "An action in the description_dsl that does not match any action in the trace_dsl."
+    },
+    {
+      "action": "Execute(targets, values, calldatas, descriptionHash)",
+      "field": "trace_dsl",
+      "description": "An action in the trace_dsl that does not match any action in the description_dsl."
+    },
+    {
+      "action": "Call(target, function_sig, args)",
+      "field": "trace_dsl",
+      "description": "An action in the trace_dsl that does not match any action in the description_dsl."
+    },
+    {
+      "action": "Call(target, function_sig, args)",
+      "field": "trace_dsl",
+      "description": "An action in the trace_dsl that does not match any action in the description_dsl."
+    },
+    {
+      "action": "Execute(targets, values, calldatas, descriptionHash)",
+      "field": "trace_dsl",
+      "description": "An action in the trace_dsl that does not match any action in the description_dsl."
+    },
+    {
+      "action": "Call(target, function_sig, args)",
+      "field": "trace_dsl",
+      "description": "An action in the trace_dsl that does not match any action in the description_dsl."
+    }
+  ],
+  "summary": "There are no matches between the description_dsl and trace_dsl; all actions in both lists are unique to each other."
+}
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-15706104363492914432572227540113855373051896881975394006732444538096386655538.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-15212507956777005315602309329914215169878587763966450377165643673108805753590.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-18742211083269328003498907723174230327570776601682376043962489402709315500668.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-105292919185331921858643224173178583901390266903267892669205105842869373522526.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-45720656345448826187222659689199787286494046921153399380076959662321080408931.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-107992041043258996427224563090014372885335179099580585497266204203463156791290.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-33657496545373741813637578444724485346468737982573562831880427564621945332995.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-4208408830555077285685632645423534041634535116286721240943655761928631543220.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-42329103797433777309488042029679811802172320979541414683300183273376839219133.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-82659277767818009782194204088226418907972756681918239480374274857360772298879.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-10686228418271748393758532071249002330319730525037728746406757788787068261444.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-63865530602418424570813160277709124551851041237648860550576561576702951975816.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-33808096277765934415068056906696425640427679116963285327644834080891069190379.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-7404040509873168432228479064563591804702835162347907107082011204120525681390.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-6325634497264265012626716784077918930541180346289202027480596910133312093648.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-75480516867756766284972947192514005324792532674550120092693062891336419998702.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-115615865324623814833258987703837575663427750121726187103053182962864855260310.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-62537345451524095629071359388092434511638926463658570104856324869910407296726.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-40272043175867710511047990376059633000673751036364092383567949469124429500507.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-31309365093913580207991288430108338667724061355449265288906484597789511363394.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-27850654116740852236526757351596115114486670304472932313768517382407193376455.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-21861129347596183989807248258922558214743224135371288783165185538477576992486.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-112764562576314516994943312429834673309292069549953740415731020720942627228986.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-107166664722174233740232174220463354481004128961821575530758100250899337476509.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-87741894125754523615596264728611635516467361279764827076788536604061840625452.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-33504840096777976512510989921427323867039135570342563123194157971712476988820.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-51329136884099251878034959419745117799040381230875971532699817044496491926852.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-43003012871521685709452092060115706577030630127946926655190871046443785691900.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-42973781582803845389836855775840822719678533376883030929209752909248937768242.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-90786656233306599444783442367171420493182391933134906270328139870999449830964.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-55447465396737793905646186593156244424717001140618132725073945884287085787959.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-48839151689001950442481252711111182244814765601408465024742109276815020082612.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-46071186312489687574960948336391811341595411932836110873328798657006776570015.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-45461903078948131870051132081249892009497709518413744958551889217805827301425.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-97815480450036429026998617227498389389237567897899533433380564585906006968770.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-6949396467348678571876890705367894936837088742488849089767544172635343148173.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-8759198094868535520038506706231539487662297008587733129541987545743856603253.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-83558494563463316177076768398348085020294312678713085260352382286714788322618.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-20404686300257550242704646761273386459664655640264490428281621095220078268383.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-43203199770691383238593940280239053946984014979449022275641313046078578194694.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-76312276134880424811339391717815330375652916610982980144903695563372140531115.json
+❌ Trace file not found: data/ES_proposal_data/traces_decoded_cleaned/0x323a76393544d5ecca80cd6ef2a560c6a395b7e3/Simulation-13214174724111749338017943143826453367599509196993220699255450633508989705578.json

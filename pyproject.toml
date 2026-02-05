@@ -1,0 +1,33 @@
+[tool.pytest.ini_options]
+# pytest配置
+minversion = "6.0"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+# 添加项目根目录到Python路径
+pythonpath = ["."]
+
+# 测试输出配置
+addopts = [
+    "-v",                    # 详细输出
+    "--tb=short",           # 简洁的traceback
+    "--strict-markers",     # 严格的marker模式
+    "--disable-warnings",   # 禁用警告
+    "--color=yes"           # 彩色输出
+]
+
+# 标记定义
+markers = [
+    "unit: 单元测试",
+    "integration: 集成测试", 
+    "performance: 性能测试",
+    "slow: 运行时间较长的测试"
+]
+
+# 测试发现规则
+filterwarnings = [
+    "ignore::UserWarning",
+    "ignore::DeprecationWarning"
+]
